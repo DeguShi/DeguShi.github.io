@@ -47,13 +47,13 @@ export const PROJECTS = [
     year: 2026,
     private: true,
     title: "Slt-Att-Le-WM",
-    oneliner: "object-centric world models for embodied agents",
+    oneliner: "teaching agents to understand a scene well enough to act in it",
     about: [
-      "Object-centric representation learning combined with world models for embodied agents.",
-      "Controlled experiments spanning 135,000 simulated episode evaluations.",
-      "Found a configuration lifting task success from 69.0% to 78.4% (+9.4 pp) over 100 seeds.",
+      "How an agent should represent the world it sees, so it can predict what happens next and plan from it.",
+      "Mostly simulation: embodied tasks, lots of controlled experiments, and a healthy obsession with seeds.",
+      "Work in progress. More here once there's something worth sharing.",
     ],
-    stack: ["Python", "PyTorch", "PyTorch Lightning", "world models"],
+    stack: ["Python", "PyTorch"],
     role: "visiting researcher (remote) · Aalto Robot Learning Lab",
   },
   {
