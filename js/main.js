@@ -75,6 +75,12 @@ function skip() {
 }
 
 function onKey(e) {
+  if (escapePending) {
+    e.preventDefault();
+    if (e.key === "Enter") goUp();
+    else if (e.key === "Escape") stayHome();
+    return;
+  }
   if (busy) {
     skip();
     e.preventDefault();
@@ -114,6 +120,9 @@ function onKey(e) {
 }
 
 function runFromUi(cmd) {
+  if (cmd === "__up") return goUp();
+  if (cmd === "__stay") return stayHome();
+  if (escapePending) return;
   if (busy) {
     skip();
     return;
@@ -123,19 +132,37 @@ function runFromUi(cmd) {
 }
 
 // `cd ..` from ~ — not in help, not in completion. For the curious.
+// Uses its own timer: the Enter that ran the command would otherwise count as "skip".
+const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+let escapePending = false;
+
 async function escapeHome() {
   busy = true;
-  skipping = false;
   term.line(["cd: permission denied: ..", "err"]);
-  await sleep(900);
+  await wait(1500);
   term.line(["  ...", "faint"]);
-  await sleep(900);
+  await wait(1500);
   term.line(["  fine. you were curious enough to try.", "amber"]);
-  await sleep(1100);
-  document.body.classList.add("leaving");
-  await sleep(500);
-  location.href = "cv/";
+  await wait(1200);
+  term.line(["  ", "faint"], { text: "[enter] go up", cls: "mint", cmd: "__up" }, ["   ", "faint"],
+    { text: "[esc] stay here", cls: "faint", cmd: "__stay" });
+  escapePending = true;
+  busy = false;
   return false;
+}
+
+async function goUp() {
+  escapePending = false;
+  busy = true;
+  document.body.classList.add("leaving");
+  await wait(500);
+  location.href = "cv/";
+}
+
+function stayHome() {
+  escapePending = false;
+  term.line(["  probably wise.", "faint"]);
+  renderPrompt();
 }
 
 function wire() {
@@ -166,6 +193,7 @@ addEventListener("pageshow", (e) => {
   if (!e.persisted) return;
   document.body.classList.remove("leaving");
   busy = false;
+  escapePending = false;
   term.line(["  welcome back.", "faint"]);
   renderPrompt();
 });
