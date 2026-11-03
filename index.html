@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Felipe Azambuja</title>
+    <meta
+      name="description"
+      content="Felipe Azambuja: computer science at the University of São Paulo. Research on world models, object-centric learning and epidemic intelligence; building products, apps and tools."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://degushi.github.io/" />
+    <meta property="og:title" content="Felipe Azambuja" />
+    <meta property="og:description" content="Research on world models, object-centric learning and epidemic intelligence; building products, apps and tools. University of São Paulo." />
+    <meta property="og:image" content="https://degushi.github.io/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Felipe Azambuja, University of São Paulo" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://degushi.github.io/" />
+    <meta name="theme-color" content="#14121c" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2314121c'/%3E%3Ctext x='6' y='22' font-family='monospace' font-size='16' fill='%232DD4BF'%3E~%3C/text%3E%3Crect x='19' y='9' width='7' height='14' rx='1' fill='%23FF7A59'/%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <canvas id="net" aria-hidden="true"></canvas>
+
+    <header class="hero">
+      <h1 class="name">Felipe Azambuja</h1>
+      <p class="sub">University of São Paulo · São Carlos, BR</p>
+      <nav class="links">
+        <a href="https://github.com/DeguShi" target="_blank" rel="noopener"
+          >github</a
+        >
+        <span>·</span>
+        <a
+          href="https://www.linkedin.com/in/azambuja-felipe"
+          target="_blank"
+          rel="noopener"
+          >linkedin</a
+        >
+        <span>·</span>
+        <a href="mailto:felipe.azamba@usp.br">email</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="term" id="term" aria-label="Interactive terminal">
+        <div class="bar">
+          <span class="dot r"></span><span class="dot y"></span
+          ><span class="dot g"></span>
+          <span class="title">felipe — zsh</span>
+          <span class="skip" id="skip">press any key to skip</span>
+        </div>
+        <div class="screen" id="screen">
+          <div id="out" role="log" aria-live="polite"></div>
+          <div class="prompt-line" id="promptLine" hidden>
+            <span class="ps" id="ps"></span
+            ><span id="before"></span><span class="caret"></span><span id="after"></span>
+            <input
+              id="input"
+              autocomplete="off"
+              autocapitalize="off"
+              spellcheck="false"
+              aria-label="terminal input"
+            />
+          </div>
+        </div>
+      </section>
+
+      <div class="chips" id="chips" aria-label="Quick commands"></div>
+      <p class="hint">
+        tab completes · ↑ ↓ history · click any <span class="m">folder</span> or
+        <span class="c">project</span>
+      </p>
+    </main>
+
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
