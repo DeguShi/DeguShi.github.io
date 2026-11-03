@@ -122,8 +122,25 @@ function runFromUi(cmd) {
   input.focus({ preventScroll: true });
 }
 
+// `cd ..` from ~ — not in help, not in completion. For the curious.
+async function escapeHome() {
+  busy = true;
+  skipping = false;
+  term.line(["cd: permission denied: ..", "err"]);
+  await sleep(900);
+  term.line(["  ...", "faint"]);
+  await sleep(900);
+  term.line(["  fine. you were curious enough to try.", "amber"]);
+  await sleep(1100);
+  document.body.classList.add("leaving");
+  await sleep(500);
+  location.href = "cv/";
+  return false;
+}
+
 function wire() {
   term.onCommand = runFromUi;
+  shell.onEscape = () => { escapeHome(); return false; };
   input.addEventListener("keydown", onKey);
   input.addEventListener("input", renderInput);
   document.addEventListener("keydown", (e) => {
@@ -144,5 +161,13 @@ function wire() {
 }
 
 wire();
+// Coming back with the browser's back button restores this page from cache: undo the exit animation.
+addEventListener("pageshow", (e) => {
+  if (!e.persisted) return;
+  document.body.classList.remove("leaving");
+  busy = false;
+  term.line(["  welcome back.", "faint"]);
+  renderPrompt();
+});
 startNet($("net"));
 intro();

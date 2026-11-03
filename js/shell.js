@@ -146,6 +146,7 @@ export class Shell {
     this.term = term;
     this.data = data;
     this.onCwd = onCwd;
+    this.onEscape = () => false;
     this.cwd = [];
     this.history = [];
     this.commands = buildCommands(this);
@@ -292,6 +293,7 @@ function buildCommands(sh) {
       desc: "change folder",
       example: "cd research",
       fn: (args) => {
+        if (args[0] && sh.fs.escapes(sh.cwd, args[0])) return sh.onEscape();
         const { path, node } = sh.node(args[0] ?? "~");
         if (!node) return err(`cd: no such file or directory: ${args[0]}`);
         if (node.type !== "dir") return err(`cd: not a directory: ${args[0]}`);

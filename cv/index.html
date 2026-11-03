@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>~/.. · Felipe Azambuja</title>
+    <meta name="theme-color" content="#14121c" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="cv.css" />
+  </head>
+  <body>
+    <canvas id="net" aria-hidden="true"></canvas>
+
+    <main class="cv">
+      <p class="crumb">
+        <span class="t-mint">~</span><span class="t-faint">/</span
+        ><span class="t-amber">..</span>
+        <span class="t-faint"> · you climbed out of home. not many do.</span>
+      </p>
+
+      <header class="cv-head">
+        <h1 class="name">Felipe Azambuja</h1>
+        <p class="sub">
+          BSc Computer Science · University of São Paulo (ICMC-USP) · expected
+          Dec 2027
+        </p>
+        <p class="links">
+          <a href="mailto:felipe.azamba@usp.br">felipe.azamba@usp.br</a
+          ><span>·</span>
+          <a
+            href="https://www.linkedin.com/in/azambuja-felipe"
+            target="_blank"
+            rel="noopener"
+            >linkedin.com/in/azambuja-felipe</a
+          ><span>·</span>
+          <a href="https://github.com/DeguShi" target="_blank" rel="noopener"
+            >github.com/DeguShi</a
+          >
+        </p>
+        <div class="actions">
+          <a class="btn" href="../">← back to ~</a>
+          <button class="btn" onclick="print()">save as pdf</button>
+        </div>
+      </header>
+
+      <section>
+        <h2><span class="t-mint">01</span> / research experience</h2>
+
+        <article class="role r">
+          <div class="when">2026 – present</div>
+          <h3>
+            Visiting Researcher
+            <span>· Aalto University, Aalto Robot Learning Lab · remote</span>
+          </h3>
+          <ul>
+            <li>
+              Researching <b>object-centric representation learning</b> and
+              <b>world models</b> for embodied agents, with controlled
+              experiments spanning <b>135,000 simulated episode evaluations</b>.
+            </li>
+            <li>
+              Identified a configuration improving task success from
+              <b>69.0% to 78.4%</b> (+9.4 percentage points over the original
+              baseline) across 100 evaluation seeds, while strengthening
+              reproducibility controls.
+            </li>
+          </ul>
+        </article>
+
+        <article class="role r">
+          <div class="when">2025 – present</div>
+          <h3>
+            FAPESP Undergraduate Researcher
+            <span
+              >· Computational Intelligence Laboratory (ICMC-USP) · São
+              Carlos</span
+            >
+          </h3>
+          <ul>
+            <li>
+              Developing autonomous <b>LLM-based agents</b> to extract
+              epidemiological risk events from unstructured online sources.
+            </li>
+            <li>
+              Modeling events as temporal and geographic graphs, investigating
+              <b>graph neural networks</b> for contextual risk estimation.
+            </li>
+            <li>
+              Integrating learned risk signals into time-varying
+              <b>SEIR models</b> for outbreak simulation and early alerts.
+            </li>
+          </ul>
+        </article>
+
+        <article class="role r">
+          <div class="when">2025 – present</div>
+          <h3>
+            AI Engineer and Researcher
+            <span
+              >· RAIA, Network for the Advancement of Artificial Intelligence ·
+              remote</span
+            >
+          </h3>
+          <ul>
+            <li>
+              <b>SpellNet:</b> designed and optimized an LSTM-based temporal
+              pipeline for real-time fingerspelling recognition, integrated with
+              CNN-based visual recognition.
+            </li>
+            <li>
+              <b>DeepPothole:</b> prepared datasets and segmentation masks and
+              evaluated YOLO segmentation variants, reaching up to
+              <b>0.90 pixel-level mIoU</b>.
+            </li>
+          </ul>
+        </article>
+      </section>
+
+      <section>
+        <h2><span class="t-coral">02</span> / selected projects</h2>
+
+        <article class="role b">
+          <div class="when">2026</div>
+          <h3>
+            Historical Handwriting OCR <span>· 19th-century documents</span>
+          </h3>
+          <ul>
+            <li>
+              Built a <b>handwritten text recognition pipeline</b> for
+              19th-century Brazilian legislative records, combining neural line
+              segmentation, fine-tuned CTC recognition and historical language
+              models.
+            </li>
+            <li>
+              Fine-tuned the recognizer on <b>2,425 aligned text lines</b> and
+              optimized decoding with conditional greedy search and trigram
+              rescoring, reducing <b>WER from 64.57% to 18.74%</b> on three
+              held-out pages.
+            </li>
+          </ul>
+        </article>
+
+        <article class="role b">
+          <div class="when">2025</div>
+          <h3>What-Manga <span>· native Android reading tracker</span></h3>
+          <ul>
+            <li>
+              Built an <b>offline-first Android app</b> with Kotlin, Jetpack
+              Compose, Room, ViewModel, StateFlow and Coroutines.
+            </li>
+            <li>
+              Implemented Google Drive backup and restore with OAuth, CSV
+              import/export and reading-progress management.
+            </li>
+          </ul>
+        </article>
+
+        <article class="role b">
+          <div class="when">2025</div>
+          <h3>Habitacion <span>· reservation manager</span></h3>
+          <ul>
+            <li>
+              Built a <b>mobile-first reservation system</b> in Next.js and
+              TypeScript for a family guest room business, replacing manual
+              workflows.
+            </li>
+            <li>
+              Implemented reservation status, payment tracking, contact lookup,
+              CSV export, backup and restore.
+            </li>
+          </ul>
+        </article>
+
+        <article class="role b">
+          <div class="when">2025</div>
+          <h3>Orquidea <span>· researcher analytics interface</span></h3>
+          <ul>
+            <li>
+              Built a researcher analytics interface integrating the
+              <b>ORCID and OpenAlex APIs</b> to search, aggregate and compare
+              academic metadata.
+            </li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="two">
+        <div>
+          <h2><span class="t-amber">03</span> / education</h2>
+          <article class="role a">
+            <div class="when">expected Dec 2027</div>
+            <h3>
+              BSc Computer Science
+              <span>· University of São Paulo (ICMC-USP), São Carlos</span>
+            </h3>
+            <p class="course">
+              Data Structures and Algorithms · Software Engineering · Operating
+              Systems · Graph Theory · Artificial Intelligence · Unstructured
+              Data Mining · Databases
+            </p>
+          </article>
+        </div>
+        <div>
+          <h2><span class="t-violet">04</span> / skills</h2>
+          <dl class="skills">
+            <dt>languages</dt>
+            <dd>Python, C++, Kotlin, TypeScript, JavaScript, SQL</dd>
+            <dt>ml &amp; science</dt>
+            <dd>
+              PyTorch, PyTorch Lightning, computer vision, OCR, audio and text
+              mining, GNNs, world models, LLMs and agents, NumPy, pandas, SciPy
+            </dd>
+            <dt>engineering</dt>
+            <dd>
+              Linux, Docker, Git, FastAPI, Next.js, Prisma, Jetpack Compose,
+              Room, PostgreSQL
+            </dd>
+          </dl>
+        </div>
+      </section>
+
+      <p class="foot t-faint">~/.. $ <span class="caret"></span></p>
+    </main>
+
+    <script type="module">
+      import { startNet } from "../js/net.js";
+      startNet(document.getElementById("net"));
+    </script>
+  </body>
+</html>

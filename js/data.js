@@ -304,12 +304,11 @@ export const FILES = [
   ] },
 ];
 
-// The intro replays the same script as the GitHub profile card.
+// The intro replays the start of the GitHub profile card script.
 export const INTRO = [
   "whoami",
   "ls research/",
   "ls building/",
-  "cat building/.stealth/README",
 ];
 
 export const CHIPS = [

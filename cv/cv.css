@@ -1,0 +1,221 @@
+.cv {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 860px;
+  margin: 40px auto 0;
+  padding: 36px 40px 28px;
+  background: rgba(20, 18, 28, 0.82);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow:
+    0 30px 80px -20px rgba(0, 0, 0, 0.6),
+    -30px 0 80px -50px rgba(45, 212, 191, 0.5),
+    30px 0 80px -50px rgba(255, 122, 89, 0.5);
+  animation: rise 0.9s ease-out both;
+}
+
+.crumb {
+  margin: 0 0 22px;
+  font: 13px var(--mono);
+  white-space: pre-wrap;
+}
+
+.cv-head {
+  text-align: left;
+  padding-bottom: 22px;
+  border-bottom: 1px dashed var(--line);
+}
+.cv-head .name {
+  font-size: clamp(36px, 6vw, 52px);
+}
+.cv-head .sub,
+.cv-head .links {
+  text-align: left;
+}
+.cv-head .sub {
+  margin: 10px 0 6px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+.btn {
+  font: 12.5px var(--mono);
+  color: var(--soft);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 14px;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    border-color 0.2s,
+    color 0.2s;
+}
+.btn:hover {
+  border-color: var(--mint);
+  color: var(--mint);
+}
+
+.cv section {
+  margin-top: 30px;
+}
+.cv h2 {
+  font: 600 14px var(--mono);
+  color: var(--soft);
+  margin: 0 0 14px;
+  letter-spacing: 0.3px;
+}
+
+.role {
+  position: relative;
+  padding: 2px 0 2px 18px;
+  margin: 0 0 18px;
+  border-left: 2px solid var(--mint);
+}
+.role.b {
+  border-left-color: var(--coral);
+}
+.role.a {
+  border-left-color: var(--amber);
+}
+.role .when {
+  font: 12px var(--mono);
+  color: var(--faint);
+}
+.role h3 {
+  margin: 2px 0 6px;
+  font: 600 15.5px / 1.4 var(--sans);
+  color: var(--text);
+}
+.role h3 span {
+  font-weight: 400;
+  color: var(--dim);
+}
+.role ul {
+  margin: 0;
+  padding-left: 18px;
+}
+.role li {
+  margin: 4px 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--soft);
+}
+.role li::marker {
+  color: var(--faint);
+}
+.role b {
+  color: var(--text);
+  font-weight: 600;
+}
+.course {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--dim);
+}
+
+.two {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 32px;
+}
+
+.skills {
+  margin: 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 6px 14px;
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+.skills dt {
+  font: 12px var(--mono);
+  color: var(--faint);
+  padding-top: 2px;
+}
+.skills dd {
+  margin: 0;
+  color: var(--soft);
+}
+
+.foot {
+  margin: 26px 0 0;
+  font: 13px var(--mono);
+}
+
+@media (max-width: 680px) {
+  .cv {
+    padding: 24px 20px;
+    margin-top: 20px;
+  }
+  .two {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
+
+/* save-as-pdf: plain, light, one column, no chrome */
+@media print {
+  @page {
+    margin: 14mm;
+  }
+  body {
+    background: #fff !important;
+    padding: 0;
+    display: block;
+  }
+  #net,
+  .crumb,
+  .actions,
+  .foot {
+    display: none !important;
+  }
+  .cv {
+    box-shadow: none;
+    border: 0;
+    background: #fff;
+    padding: 0;
+    margin: 0;
+    max-width: none;
+    backdrop-filter: none;
+  }
+  .cv-head .name {
+    background: none;
+    -webkit-background-clip: initial;
+    background-clip: initial;
+    color: #111;
+    animation: none;
+  }
+  .cv-head .sub,
+  .cv-head .links,
+  .cv-head .links a {
+    color: #444;
+    animation: none;
+  }
+  .cv h2,
+  .role h3,
+  .role b,
+  .skills dd,
+  .role li {
+    color: #111;
+  }
+  .role h3 span,
+  .role .when,
+  .course,
+  .skills dt {
+    color: #555;
+  }
+  .role {
+    break-inside: avoid;
+  }
+  .cv h2 span {
+    color: #111 !important;
+  }
+}

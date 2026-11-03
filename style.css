@@ -399,3 +399,11 @@ a.link:hover {
 .prompt-line > span {
   white-space: pre-wrap;
 }
+
+body.leaving main,
+body.leaving .hero {
+  transition: opacity 0.5s, transform 0.5s, filter 0.5s;
+  opacity: 0;
+  transform: translateY(-24px);
+  filter: blur(4px);
+}

@@ -42,6 +42,18 @@ export class FS {
     return parts;
   }
 
+  // True if `arg` climbs above ~ (e.g. `cd ..` at home). Used for one quiet easter egg.
+  escapes(cwd, arg = "") {
+    if (arg.startsWith("~") || arg.startsWith("/")) return false;
+    let depth = cwd.length;
+    for (const seg of arg.split("/")) {
+      if (seg === "..") depth--;
+      else if (seg && seg !== ".") depth++;
+      if (depth < 0) return true;
+    }
+    return false;
+  }
+
   get(path) {
     let node = this.root;
     for (const name of path) {
