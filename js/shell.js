@@ -165,7 +165,20 @@ export class Shell {
     if (!input) return;
     if (record) this.history.push(input);
     for (const part of input.split("&&")) {
-      const [name, ...args] = part.trim().split(/\s+/);
+      const [name, ...raw] = part.trim().split(/\s+/);
+      const args = [];
+      for (const a of raw) {
+        if (!/[*?]/.test(a)) {
+          args.push(a);
+          continue;
+        }
+        const hits = this.fs.glob(this.cwd, a);
+        if (!hits.length) {
+          this.term.line([`zsh: no matches found: ${a}`, "err"]);
+          return;
+        }
+        args.push(...hits);
+      }
       const cmd = this.commands[name];
       if (!cmd) {
         this.term.line(
@@ -275,17 +288,21 @@ function buildCommands(sh) {
       desc: "list a folder",
       example: "ls building",
       fn: (args) => {
-        const arg = args.filter((a) => !a.startsWith("-"))[0] ?? ".";
-        const { path, node } = sh.node(arg);
-        if (!node) return err(`ls: ${arg}: no such file or directory`);
-        if (node.type !== "dir") {
-          t.line(entrySeg(node, path.at(-1), path));
-          return;
-        }
-        const segs = [];
-        for (const [name, child] of node.children)
-          segs.push(entrySeg(child, name, [...path, name]), "  ");
-        t.line(...segs);
+        const targets = args.filter((a) => !a.startsWith("-"));
+        if (!targets.length) targets.push(".");
+        targets.forEach((arg, i) => {
+          const { path, node } = sh.node(arg);
+          if (!node) return err(`ls: ${arg}: no such file or directory`);
+          if (node.type !== "dir") return t.line(entrySeg(node, path.at(-1), path));
+          if (targets.length > 1) {
+            if (i) t.line("");
+            t.line([`${arg}:`, "faint"]);
+          }
+          const segs = [];
+          for (const [name, child] of node.children)
+            segs.push(entrySeg(child, name, [...path, name]), "  ");
+          t.line(...segs);
+        });
       },
     },
 

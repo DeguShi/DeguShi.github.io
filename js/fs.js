@@ -54,6 +54,34 @@ export class FS {
     return false;
   }
 
+  // Expand * and ? like a shell. Returns matching args (as typed, relative), [] if none.
+  glob(cwd, pattern) {
+    const lead = pattern.match(/^(~\/?|\/)?/)[0];
+    const trailing = pattern.endsWith("/");
+    const segs = pattern.slice(lead.length).split("/").filter(Boolean);
+    let hits = [{ path: lead ? [] : [...cwd], text: lead }];
+    for (const seg of segs) {
+      const next = [];
+      for (const { path, text } of hits) {
+        const join = (name) => text + (text && !text.endsWith("/") ? "/" : "") + name;
+        if (!/[*?]/.test(seg)) {
+          const p = this.resolve(path, seg);
+          if (seg === ".." || this.get(p)) next.push({ path: p, text: join(seg) });
+          continue;
+        }
+        const node = this.get(path);
+        if (node?.type !== "dir") continue;
+        const re = new RegExp(`^${seg.replace(/[.+^${}()|[\]\\]/g, "\\$&").replace(/\*/g, ".*").replace(/\?/g, ".")}$`);
+        for (const name of node.children.keys())
+          if (re.test(name) && (seg.startsWith(".") || !name.startsWith(".")))
+            next.push({ path: [...path, name], text: join(name) });
+      }
+      hits = next;
+    }
+    if (trailing) hits = hits.filter((h) => this.get(h.path)?.type === "dir");
+    return hits.map((h) => h.text + (trailing ? "/" : ""));
+  }
+
   get(path) {
     let node = this.root;
     for (const name of path) {
